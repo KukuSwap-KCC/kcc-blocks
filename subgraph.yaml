@@ -1,0 +1,24 @@
+specVersion: 0.0.2
+description: Kucoin Community Chain blocks
+repository: https://github.com/KukuSwap-KCC/kcc-blocks
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ERC20
+    network: kcc
+    source:
+      address: '0x509195a9d762bc6f3282c874156bd2e45de86a10'
+      abi: ERC20
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mappings/blocks.ts
+      entities:
+        - Block
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      blockHandlers:
+        - handler: handleBlock
